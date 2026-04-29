@@ -1,23 +1,18 @@
 import type { Metadata, Viewport } from 'next'
-import { Playfair_Display, Lato, Pinyon_Script } from 'next/font/google'
+import { Cormorant_Garamond, Montserrat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-serif',
 })
 
-const lato = Lato({
+const montserrat = Montserrat({
   subsets: ['latin'],
-  weight: ['300', '400', '700'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-sans',
-})
-
-const pinyonScript = Pinyon_Script({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-script',
 })
 
 export const metadata: Metadata = {
@@ -60,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${lato.variable} ${pinyonScript.variable} bg-background`}>
+    <html lang="en" className={`${cormorant.variable} ${montserrat.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
