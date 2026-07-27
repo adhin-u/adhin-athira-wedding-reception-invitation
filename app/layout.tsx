@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from 'next'
-import { Bricolage_Grotesque, Lato, JetBrains_Mono } from 'next/font/google'
+import { Playfair_Display, Lato, Pinyon_Script } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const bricolage = Bricolage_Grotesque({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-display',
+  variable: '--font-serif',
 })
 
 const lato = Lato({
@@ -15,10 +14,10 @@ const lato = Lato({
   variable: '--font-sans',
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const pinyonScript = Pinyon_Script({
   subsets: ['latin'],
-  weight: ['500', '700'],
-  variable: '--font-mono',
+  weight: ['400'],
+  variable: '--font-script',
 })
 
 export const metadata: Metadata = {
@@ -50,7 +49,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#fefdfc',
+  themeColor: '#7a9a7a',
   width: 'device-width',
   initialScale: 1,
 }
@@ -61,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${lato.variable} ${jetbrainsMono.variable} bg-background`}>
+    <html lang="en" className={`${playfair.variable} ${lato.variable} ${pinyonScript.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

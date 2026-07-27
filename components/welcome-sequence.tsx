@@ -9,9 +9,10 @@ export function WelcomeSequence({ children }: { children: React.ReactNode }) {
   const [stage, setStage] = useState<SequenceStage>("loading")
 
   useEffect(() => {
+    // Fast loading animation "A & A" drawing finishes after 1.8s
     const timer = setTimeout(() => {
       setStage("complete")
-    }, 1700)
+    }, 1800)
     return () => clearTimeout(timer)
   }, [])
 
@@ -28,61 +29,44 @@ export function WelcomeSequence({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div
-        className={`fixed inset-0 z-[100] flex items-center justify-center bg-background overflow-hidden transition-opacity duration-500 ${
+      <div 
+        className={`fixed inset-0 z-[100] flex items-center justify-center bg-background overflow-hidden selection:bg-accent/30 transition-opacity duration-1000 ${
           stage === "complete" ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        <motion.div
-          animate={{ scale: [1, 1.08, 1], opacity: [0.08, 0.12, 0.08] }}
-          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-          className="absolute w-72 h-72 bg-primary rounded-full blur-3xl pointer-events-none"
-        />
-
         <AnimatePresence mode="wait">
           {stage === "loading" && (
-            <motion.div
-              key="loading"
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.4, ease: "easeIn" }}
-              className="relative flex flex-col items-center"
-            >
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="text-[10px] sm:text-xs tracking-[0.3em] uppercase text-primary font-sans font-bold mb-4"
-              >
-                Wedding Reception
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.5, ease: "easeOut" }}
-                className="font-display text-2xl sm:text-3xl font-bold text-foreground tracking-tight"
-              >
-                Adhin{" "}
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.5, duration: 0.4, type: "spring", stiffness: 320 }}
-                  className="inline-block text-primary"
+           <motion.div 
+             key="loading"
+             exit={{ opacity: 0, filter: "blur(8px)", scale: 1.05 }}
+             transition={{ duration: 0.8, ease: "easeIn" }}
+             className="flex flex-col items-center"
+           >
+             <motion.svg className="w-72 h-36 sm:w-96 sm:h-48 text-primary drop-shadow-sm" viewBox="0 0 200 80">
+                <motion.text
+                  x="100" y="45"
+                  textAnchor="middle" dominantBaseline="middle"
+                  className="font-script text-6xl font-normal"
+                  initial={{ strokeDasharray: 300, strokeDashoffset: 300, fill: "rgba(180,180,220,0)" }}
+                  animate={{ 
+                    strokeDashoffset: 0, 
+                    fill: ["rgba(180,180,220,0)", "currentColor"] 
+                  }}
+                  transition={{ duration: 1.2, ease: "easeOut", times: [0, 1] }}
+                  style={{ strokeWidth: 1.5, stroke: "currentColor" }}
                 >
-                  &amp;
-                </motion.span>{" "}
-                Athira
-              </motion.p>
-
-              <div className="w-24 h-[3px] bg-border rounded-full mt-6 overflow-hidden">
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 1.1, delay: 0.3, ease: "easeInOut" }}
-                  className="h-full w-full bg-primary rounded-full origin-left"
-                />
-              </div>
-            </motion.div>
+                  A & A
+                </motion.text>
+             </motion.svg>
+             <motion.p
+               initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+               transition={{ delay: 0.8, duration: 0.6 }}
+               className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground font-sans font-semibold mt-4 sm:mt-0"
+             >
+               The Wedding Reception
+             </motion.p>
+           </motion.div>
           )}
         </AnimatePresence>
       </div>

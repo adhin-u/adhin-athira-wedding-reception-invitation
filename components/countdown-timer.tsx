@@ -21,7 +21,7 @@ export function CountdownTimer({ targetDate }: { targetDate: Date }) {
 
   useEffect(() => {
     setMounted(true)
-
+    
     const calculateTimeLeft = () => {
       const difference = targetDate.getTime() - new Date().getTime()
 
@@ -48,45 +48,65 @@ export function CountdownTimer({ targetDate }: { targetDate: Date }) {
     { value: timeLeft.seconds, label: "Seconds" },
   ]
 
-  return (
-    <div className="flex justify-center gap-2 sm:gap-4">
-      {timeUnits.map((unit, index) => (
-        <motion.div
-          key={unit.label}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-          className="flex flex-col items-center"
-        >
-          <motion.div
-            whileHover={{ y: -2 }}
-            className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-xl bg-card overflow-hidden"
-          >
-            {!mounted ? (
-              <span className="font-mono text-3xl sm:text-4xl font-bold text-foreground tabular-nums">
+  if (!mounted) {
+    return (
+      <div className="flex justify-center gap-3 sm:gap-4">
+        {timeUnits.map((unit) => (
+          <div key={unit.label} className="flex flex-col items-center">
+            <div className="relative w-16 h-20 sm:w-20 sm:h-24 flex flex-col items-center justify-center rounded-xl bg-card/90 backdrop-blur-sm border border-border/50 shadow-lg">
+              <span className="text-4xl sm:text-5xl font-serif font-medium text-primary tabular-nums tracking-tight">
                 --
               </span>
-            ) : (
+            </div>
+            <span className="mt-3 text-[10px] sm:text-xs text-muted-foreground font-medium tracking-[0.2em] uppercase">
+              {unit.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex justify-center gap-3 sm:gap-4">
+      {timeUnits.map((unit, index) => (
+        <div key={unit.label} className="flex flex-col items-center">
+          <motion.div 
+            whileHover={{ y: -4, scale: 1.02 }}
+            className="group relative w-16 h-20 sm:w-20 sm:h-24 flex flex-col items-center justify-center rounded-2xl bg-card/80 backdrop-blur-md border border-border/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(122,154,122,0.15)] transition-all duration-300 overflow-hidden"
+          >
+            {/* Shimmer overlay */}
+            <motion.div 
+              animate={{ opacity: [0.2, 0.6, 0.2] }}
+              transition={{ repeat: Infinity, duration: 3, delay: index * 0.5, ease: "easeInOut" }}
+              className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/5"
+            />
+            
+            {/* Number with AnimatePresence for smooth flip effect */}
+            <div className="relative h-[2.5rem] sm:h-[3rem] overflow-hidden w-full flex justify-center items-center">
               <AnimatePresence mode="popLayout">
-                <motion.span
+                <motion.span 
                   key={unit.value}
-                  initial={{ y: 14, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -14, opacity: 0 }}
-                  transition={{ type: "spring", stiffness: 340, damping: 28 }}
-                  className="absolute font-mono text-3xl sm:text-4xl font-bold text-foreground tabular-nums"
+                  initial={{ y: 20, opacity: 0, scale: 0.8 }}
+                  animate={{ y: 0, opacity: 1, scale: 1 }}
+                  exit={{ y: -20, opacity: 0, scale: 0.8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  className="absolute text-4xl sm:text-5xl font-serif font-medium text-primary tabular-nums tracking-tight drop-shadow-sm"
                 >
                   {String(unit.value).padStart(2, "0")}
                 </motion.span>
               </AnimatePresence>
-            )}
-            <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-primary" />
+            </div>
+            
+            {/* Decorative line */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-gradient-to-r from-transparent via-accent/60 to-transparent group-hover:w-12 transition-all duration-300" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-accent/30 to-transparent group-hover:w-8 transition-all duration-300" />
           </motion.div>
-          <span className="mt-3 text-[10px] sm:text-xs text-muted-foreground font-sans font-semibold tracking-[0.2em] uppercase">
+          
+          <span className="mt-3 text-[10px] sm:text-xs text-muted-foreground font-medium tracking-[0.25em] uppercase">
             {unit.label}
           </span>
-        </motion.div>
+        </div>
       ))}
     </div>
   )
