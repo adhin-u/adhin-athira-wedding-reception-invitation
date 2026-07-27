@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Lato, Pinyon_Script } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -23,7 +22,6 @@ const pinyonScript = Pinyon_Script({
 export const metadata: Metadata = {
   title: 'Adhin & Athira | Wedding Reception',
   description: 'You are cordially invited to celebrate the wedding reception of Adhin and Athira on 14th September 2026 at AGP Garden Heritage Hall, Calicut.',
-  generator: 'v0.app',
   openGraph: {
     title: 'Adhin & Athira | Wedding Reception',
     description: 'Join us for our wedding reception celebration on 14th September 2026',
@@ -63,7 +61,6 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${lato.variable} ${pinyonScript.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
