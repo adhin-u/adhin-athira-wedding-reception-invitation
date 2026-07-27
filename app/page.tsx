@@ -148,7 +148,7 @@ export default function WeddingInvitation() {
               <Button
                 asChild
                 variant="outline"
-                className="mt-auto border-border hover:border-primary hover:text-primary font-sans font-bold rounded-xl w-full active:scale-95 transition-transform"
+                className="mt-auto border-border hover:border-primary hover:bg-primary hover:text-primary-foreground font-sans font-bold rounded-xl w-full active:scale-95 transition-transform"
               >
                 <a href={generateGoogleCalendarLink()} target="_blank" rel="noopener noreferrer">
                   Remind Me
