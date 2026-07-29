@@ -28,6 +28,24 @@ export const metadata: Metadata = {
     description: 'Join us for our wedding reception celebration on 14th September 2026',
     url: 'https://reception.adhinathira.in/',
     type: 'website',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 800,
+        height: 1200,
+        alt: 'Adhin & Athira Wedding Reception',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Adhin & Athira | Wedding Reception',
+    description: 'Join us for our wedding reception celebration on 14th September 2026',
+    images: ['/twitter-image.png'],
+  },
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
   },
 };
 
