@@ -28,19 +28,8 @@ export const metadata: Metadata = {
     description: 'Join us for our wedding reception celebration on 14th September 2026',
     url: 'https://reception.adhinathira.in/',
     type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 800,
-        height: 1200,
-        alt: 'Adhin & Athira Wedding Reception',
-      },
-    ],
   },
-  icons: {
-    icon: '/icon.svg?v=2',
-  },
-}
+};
 
 export const viewport: Viewport = {
   themeColor: '#101a2d',
