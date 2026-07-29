@@ -20,12 +20,22 @@ const pinyonScript = Pinyon_Script({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://reception.adhinathira.in/'),
   title: 'Adhin & Athira | Wedding Reception',
   description: 'You are cordially invited to celebrate the wedding reception of Adhin and Athira on 14th September 2026 at AGP Garden Heritage Hall, Calicut.',
   openGraph: {
     title: 'Adhin & Athira | Wedding Reception',
     description: 'Join us for our wedding reception celebration on 14th September 2026',
+    url: 'https://reception.adhinathira.in/',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 800,
+        height: 1200,
+        alt: 'Adhin & Athira Wedding Reception',
+      },
+    ],
   },
   icons: {
     icon: '/icon.svg?v=2',
