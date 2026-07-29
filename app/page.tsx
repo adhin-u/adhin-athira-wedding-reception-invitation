@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { MapPin, Calendar, Heart, Sparkles, Clock, Navigation } from "lucide-react"
+import { MapPin, Calendar, Heart, Sparkles, Clock, Navigation, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CountdownTimer } from "@/components/countdown-timer"
 import { AmbientSparkles, GoldAccentLines } from "@/components/floating-elements"
@@ -206,12 +206,13 @@ export default function WeddingInvitation() {
            transition={{ delay: 1.5, duration: 1 }}
            className="flex flex-col items-center justify-center text-muted-foreground mb-16 sm:mb-20"
         >
-           <span className="text-[10px] uppercase tracking-[0.3em] font-sans font-semibold mb-4 opacity-50">Scroll to discover</span>
            <motion.div
-             animate={{ y: [0, 8, 0], opacity: [0.3, 0.8, 0.3] }}
-             transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-             className="w-[1px] h-12 bg-gradient-to-b from-transparent via-primary/40 to-transparent"
-           />
+             animate={{ y: [0, 10, 0] }}
+             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+             className="p-3 rounded-full bg-primary/5 border border-primary/10 shadow-[0_0_15px_rgba(var(--primary),0.1)]"
+           >
+             <ChevronDown className="w-6 h-6 text-primary/80" />
+           </motion.div>
         </motion.div>
 
         {/* Bento Grid Section - Mobile Optimized */}
