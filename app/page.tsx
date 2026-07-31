@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { MapPin, Calendar, Heart, Sparkles, Clock, Navigation, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CountdownTimer } from "@/components/countdown-timer"
@@ -32,7 +32,8 @@ function generateGoogleCalendarLink() {
 
 export default function WeddingInvitation() {
   const containerRef = useRef<HTMLDivElement>(null)
-  
+  const [hasEventPassed, setHasEventPassed] = useState(false)
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -232,9 +233,9 @@ export default function WeddingInvitation() {
                     <Clock className="w-24 h-24" />
                  </div>
                  <h3 className="font-sans text-xs tracking-[0.3em] uppercase text-primary font-bold mb-6 flex items-center gap-2">
-                   <Sparkles className="w-4 h-4" /> The Wait Continues
+                   <Sparkles className="w-4 h-4" /> {hasEventPassed ? "Happily Ever After" : "The Wait Continues"}
                  </h3>
-                 <CountdownTimer targetDate={EVENT_DATE} />
+                 <CountdownTimer targetDate={EVENT_DATE} onStatusChange={setHasEventPassed} />
               </div>
             </div>
 

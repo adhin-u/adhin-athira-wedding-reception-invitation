@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
+import { Heart } from "lucide-react"
 
 interface TimeLeft {
   days: number
@@ -10,7 +11,12 @@ interface TimeLeft {
   seconds: number
 }
 
-export function CountdownTimer({ targetDate }: { targetDate: Date }) {
+interface CountdownTimerProps {
+  targetDate: Date
+  onStatusChange?: (hasPassed: boolean) => void
+}
+
+export function CountdownTimer({ targetDate, onStatusChange }: CountdownTimerProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -18,10 +24,11 @@ export function CountdownTimer({ targetDate }: { targetDate: Date }) {
     seconds: 0,
   })
   const [mounted, setMounted] = useState(false)
+  const [hasPassed, setHasPassed] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    
+
     const calculateTimeLeft = () => {
       const difference = targetDate.getTime() - new Date().getTime()
 
@@ -32,6 +39,12 @@ export function CountdownTimer({ targetDate }: { targetDate: Date }) {
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         })
+        setHasPassed(false)
+        onStatusChange?.(false)
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        setHasPassed(true)
+        onStatusChange?.(true)
       }
     }
 
@@ -39,7 +52,7 @@ export function CountdownTimer({ targetDate }: { targetDate: Date }) {
     const timer = setInterval(calculateTimeLeft, 1000)
 
     return () => clearInterval(timer)
-  }, [targetDate])
+  }, [targetDate, onStatusChange])
 
   const timeUnits = [
     { value: timeLeft.days, label: "Days" },
@@ -64,6 +77,25 @@ export function CountdownTimer({ targetDate }: { targetDate: Date }) {
           </div>
         ))}
       </div>
+    )
+  }
+
+  if (hasPassed) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col items-center justify-center py-4 text-center"
+      >
+        <Heart className="w-8 h-8 text-accent fill-accent/40 mb-4" />
+        <p className="font-serif text-2xl sm:text-3xl text-foreground mb-2">
+          Happily Married!
+        </p>
+        <p className="text-muted-foreground font-sans text-sm tracking-wide">
+          Thank you for celebrating with us.
+        </p>
+      </motion.div>
     )
   }
 
