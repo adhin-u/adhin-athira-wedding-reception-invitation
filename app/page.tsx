@@ -14,6 +14,7 @@ import {
 } from "@/components/theme-decoration"
 import { motion, useScroll, useTransform } from "motion/react"
 import { WelcomeSequence } from "@/components/welcome-sequence"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const EVENT_DATE = new Date("2026-09-14T17:00:00")
 const VENUE_LINK = "https://maps.app.goo.gl/uNtcAuRzTbo3ger87"
@@ -53,9 +54,9 @@ export default function WeddingInvitation() {
       <main ref={containerRef} className="min-h-[150vh] bg-background relative overflow-hidden selection:bg-accent/30">
         
        {/* Nebula Gradients */}
-       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-screen" />
-       <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] translate-x-1/3 pointer-events-none mix-blend-screen" />
-       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-secondary/15 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
+       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply dark:mix-blend-screen" />
+       <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] translate-x-1/3 pointer-events-none mix-blend-multiply dark:mix-blend-screen" />
+       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-secondary/15 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen" />
 
       {/* Ambient sparkles background */}
       <AmbientSparkles />
@@ -155,7 +156,7 @@ export default function WeddingInvitation() {
           className="text-center mb-16 w-full px-4 relative"
         >
           {/* Subtle central glow to separate names from background textures */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[120%] bg-accent/5 rounded-[100%] blur-[60px] pointer-events-none mix-blend-screen" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[120%] bg-accent/5 rounded-[100%] blur-[60px] pointer-events-none mix-blend-multiply dark:mix-blend-screen" />
           
           <h1 className="font-script text-[6rem] sm:text-[8rem] md:text-[10rem] font-normal text-foreground tracking-normal block relative z-10 leading-[0.8] mb-2">
             Adhin
@@ -371,6 +372,12 @@ export default function WeddingInvitation() {
             <p className="text-xs sm:text-sm text-primary/80 font-sans mt-6 tracking-[0.25em] uppercase font-bold bg-primary/5 py-2 px-6 rounded-full inline-block border border-primary/10">
               14th Sep 2026 • Calicut
             </p>
+
+            <div className="flex items-center justify-center gap-3 mt-10">
+              <span className="w-1 h-1 rounded-full bg-accent/40" />
+              <ThemeToggle />
+              <span className="w-1 h-1 rounded-full bg-accent/40" />
+            </div>
           </motion.div>
         </div>
       </footer>
