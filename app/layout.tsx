@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Lato, Pinyon_Script } from 'next/font/google'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -52,7 +53,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#101a2d',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f7f3ea' },
+    { media: '(prefers-color-scheme: dark)', color: '#101a2d' },
+  ],
   width: 'device-width',
   initialScale: 1,
 }
@@ -63,9 +67,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${lato.variable} ${pinyonScript.variable} bg-background`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${playfair.variable} ${lato.variable} ${pinyonScript.variable} bg-background`}
+    >
       <body className="font-sans antialiased">
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
