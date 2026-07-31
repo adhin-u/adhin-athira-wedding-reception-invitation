@@ -54,9 +54,9 @@ export default function WeddingInvitation() {
       <main ref={containerRef} className="min-h-[150vh] bg-background relative overflow-hidden selection:bg-accent/30">
         
        {/* Nebula Gradients */}
-       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply dark:mix-blend-screen" />
-       <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] translate-x-1/3 pointer-events-none mix-blend-multiply dark:mix-blend-screen" />
-       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-secondary/15 rounded-full blur-[100px] pointer-events-none mix-blend-multiply dark:mix-blend-screen" />
+       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/25 dark:bg-primary/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none dark:mix-blend-screen" />
+       <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/20 dark:bg-accent/5 rounded-full blur-[150px] translate-x-1/3 pointer-events-none dark:mix-blend-screen" />
+       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-secondary/30 dark:bg-secondary/15 rounded-full blur-[100px] pointer-events-none dark:mix-blend-screen" />
 
       {/* Ambient sparkles background */}
       <AmbientSparkles />
@@ -156,7 +156,7 @@ export default function WeddingInvitation() {
           className="text-center mb-16 w-full px-4 relative"
         >
           {/* Subtle central glow to separate names from background textures */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[120%] bg-accent/5 rounded-[100%] blur-[60px] pointer-events-none mix-blend-multiply dark:mix-blend-screen" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[120%] bg-accent/20 dark:bg-accent/5 rounded-[100%] blur-[60px] pointer-events-none dark:mix-blend-screen" />
           
           <h1 className="font-script text-[6rem] sm:text-[8rem] md:text-[10rem] font-normal text-foreground tracking-normal block relative z-10 leading-[0.8] mb-2">
             Adhin
@@ -243,10 +243,10 @@ export default function WeddingInvitation() {
             {/* Date Card */}
             <div className="md:col-span-5 group">
                <div className="h-full bg-card/60 backdrop-blur-xl border border-border/50 rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 flex flex-col justify-center items-center text-center relative overflow-hidden">
-                 <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-                    className="absolute -right-8 -top-8 w-32 h-32 bg-primary/5 rounded-full blur-2xl"
+                 <motion.div
+                    animate={{ scale: [1, 1.25, 1], opacity: [0.5, 1, 0.5] }}
+                    transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+                    className="absolute -right-8 -top-8 w-32 h-32 bg-primary/10 rounded-full blur-2xl"
                  />
                  <Calendar className="w-8 h-8 text-accent mb-4 opacity-80" />
                  <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-sans mb-3 font-semibold">
@@ -276,10 +276,10 @@ export default function WeddingInvitation() {
             {/* Venue Card */}
             <div className="md:col-span-7 group">
               <div className="h-full bg-card/60 backdrop-blur-xl border border-border/50 rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 flex flex-col justify-center relative overflow-hidden">
-                <motion.div 
-                    animate={{ rotate: -360 }}
-                    transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-                    className="absolute -left-12 -bottom-12 w-40 h-40 bg-accent/5 rounded-full blur-3xl"
+                <motion.div
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                    transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 1 }}
+                    className="absolute -left-12 -bottom-12 w-40 h-40 bg-accent/10 rounded-full blur-3xl"
                  />
                 <MapPin className="w-8 h-8 text-primary mb-4 opacity-80" />
                 <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-sans mb-2 font-semibold">
