@@ -321,6 +321,23 @@ export default function WeddingInvitation() {
           <CelestialDivider className="w-56 sm:w-72 h-8 opacity-70" />
         </motion.div>
 
+        {/* Wedding ceremony note */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="text-center max-w-md px-6 mb-12"
+        >
+          <p className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-muted-foreground/70 font-sans font-semibold mb-3">
+            Wedding Ceremony
+          </p>
+          <p className="text-muted-foreground font-sans text-sm sm:text-[15px] leading-relaxed">
+            Solemnized privately on Sunday, 13th September 2026<br />
+            at the residence of the bride, Talap, Kannur
+          </p>
+        </motion.div>
+
         {/* Graceful closing message */}
         <motion.div 
           initial={{ opacity: 0 }}
